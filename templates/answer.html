@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/css.css')}}">
+    <h1 align="center">{{ title }}</h1>
+    <p class="table_info">Фамилия: {{ surname }}</p>
+    <p class="table_info">Имя: {{ name }}</p>
+    <p class="table_info">Образование: {{ education }}</p>
+    <p class="table_info">Профессия: {{ profession }}</p>
+    <p class="table_info">Пол: {{ sex }}</p>
+    <p class="table_info">Мотивация: {{ motivation }}</p>
+    <p class="table_info">Готовы остаться на марсе?{{ ready }}</p>
+
+
+{% endblock %}

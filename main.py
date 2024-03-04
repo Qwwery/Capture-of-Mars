@@ -81,6 +81,22 @@ def table(sex, age):
     return render_template('table.html', **info)
 
 
+@app.route('/answer')
+@app.route('/auto_answer')
+def answer():
+    info = {
+        'title': 'Заголовок',
+        'surname': 'Watny',
+        'name': 'Mark',
+        'education': 'выше высшего',
+        'profession': 'штурман марсоход',
+        'sex': 'male',
+        'motivation': 'Всегда мечтал застрять на марсе!',
+        'ready': 'True'
+    }
+
+    return render_template('answer.html', **info)
+
 
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')

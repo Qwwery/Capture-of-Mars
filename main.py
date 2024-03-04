@@ -1,4 +1,4 @@
-from flask import Flask, url_for, render_template
+from flask import Flask, url_for, render_template, request
 
 app = Flask(__name__)
 
@@ -84,17 +84,29 @@ def table(sex, age):
     return render_template('table.html', **info)
 
 
-@app.route('/carousel')
+@app.route('/carousel', methods=['POST', 'GET'])
 def carousel():
     img = [url_for('static', filename='img/landscapes/Пейзаж 1.png'),
            url_for('static', filename='img/landscapes/Пейзаж 2.png'),
            url_for('static', filename='img/landscapes/Пейзаж 3.png')]
+    if request.method == 'GET':
+        info = {
+            'img': img
+        }
 
-    info = {
-        'img': img
-    }
+        return render_template('carousel.html', **info)
+    elif request.method == 'POST':
+        new_file = f'Пейзаж {len(img)}.png'
+        f = request.files['new_photo']
+        with open(f'static/img/landscapes/{new_file}', 'wb') as file:
+            file.write(f.read())
+        img.append(url_for('static', filename=f'img/landscapes/Пейзаж {len(img) - 1}.png'))
 
-    return render_template('carousel.html', **info)
+        info = {
+            'img': img
+        }
+
+        return render_template('carousel.html', **info)
 
 
 @app.route('/answer')

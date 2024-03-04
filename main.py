@@ -1,4 +1,4 @@
-from flask import Flask, request, url_for, render_template
+from flask import Flask, url_for, render_template
 
 app = Flask(__name__)
 
@@ -34,7 +34,10 @@ def list_prof(list):
     info = {
         'title': 'Профессии',
         'list': list,
-        'prof': ['инженер-исследователь', 'пилот', 'строитель', 'экзобиолог', 'врач', 'инженер по терраформированию', 'климатолог', 'специалист по радиационной защите', 'астрогеолог', 'гляциолог', 'инженер жизнеобеспечения', 'метеоролог', 'оператор марсохода', 'киберинженер', 'штурман', 'пилот дронов']
+        'prof': ['инженер-исследователь', 'пилот', 'строитель', 'экзобиолог', 'врач', 'инженер по терраформированию',
+                 'климатолог', 'специалист по радиационной защите', 'астрогеолог', 'гляциолог',
+                 'инженер жизнеобеспечения', 'метеоролог', 'оператор марсохода', 'киберинженер', 'штурман',
+                 'пилот дронов']
     }
     return render_template('list_prof.html', **info)
 
@@ -72,13 +75,26 @@ def table(sex, age):
     if age < 21:
         img = 'mini'
     else:
-        img ='big'
+        img = 'big'
     info = {
         'color': color,
         'img': img
     }
 
     return render_template('table.html', **info)
+
+
+@app.route('/carousel')
+def carousel():
+    img = [url_for('static', filename='img/landscapes/Пейзаж 1.png'),
+           url_for('static', filename='img/landscapes/Пейзаж 2.png'),
+           url_for('static', filename='img/landscapes/Пейзаж 3.png')]
+
+    info = {
+        'img': img
+    }
+
+    return render_template('carousel.html', **info)
 
 
 @app.route('/answer')
@@ -99,4 +115,4 @@ def answer():
 
 
 if __name__ == '__main__':
-    app.run(port=8080, host='127.0.0.1')
+    app.run(port=8080, host='127.0.0.1', debug=True)

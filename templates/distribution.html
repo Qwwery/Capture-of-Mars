@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 align="center">Размещение по каютам</h1>
+    {% for i in team %}
+        {% if loop.index == 1%}
+            <a style="padding-left: 150px">{{i}} - Каюта № {{ i.loop }} - капитан корабля</a><br>
+        {% elif loop.index != 1 %}
+            <a style="padding-left: 150px">{{i}} - Каюта № {{ i.loop }}</a><br>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

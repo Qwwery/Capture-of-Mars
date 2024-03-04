@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <br>
+    <hr>
+    <img src="{{url_for('static', filename='img/MARS-2-7.png')}}" alt="">
+    <h2><b>Аварийный доступ</b></h2>
+    <p>id астронавта</p>
+    <input align="center" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" id="id_a" name="id_a"><br>
+    <p>Пароль астронавта</p>
+    <br>
+    <input align="center" type="password" class="form-control" aria-label="Username" aria-describedby="basic-addon1" id="pas_a" name="pas_a"><br>
+    <p>id капитана</p>
+    <input align="center" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" id="id_k" name="id_k"><br>
+    <p>Пароль капитана</p>
+    <input align="center" type="password" class="form-control" aria-label="Username" aria-describedby="basic-addon1" id="pas_k" name="pas_k"><br>
+    <hr>
+{% endblock %}

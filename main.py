@@ -133,10 +133,8 @@ def answer():
 def member():
     with open('templates/js.js', 'r', encoding='utf-8') as f:
         data = json.load(f)
-    print(data)
     random.shuffle(data)
     data = data[0]
-    print(data)
     info = {
         'info_user': data
     }

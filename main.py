@@ -1,4 +1,7 @@
+import random
+
 from flask import Flask, url_for, render_template, request
+import json
 
 app = Flask(__name__)
 
@@ -124,6 +127,22 @@ def answer():
     }
 
     return render_template('answer.html', **info)
+
+
+@app.route('/member')
+def member():
+    with open('templates/js.js', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    print(data)
+    random.shuffle(data)
+    data = data[0]
+    print(data)
+    info = {
+        'info_user': data
+    }
+
+    return render_template('member.html', **info)
+
 
 
 if __name__ == '__main__':

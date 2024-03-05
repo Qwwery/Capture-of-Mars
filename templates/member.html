@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div align="center">
+        <h2>{{ info_user["name"] }} {{ info_user["surname"] }}</h2>
+        <img src="{{ info_user['photo'] }}" alt="Тут должна быть аватарка пользователя!">
+        <p>{% for i in info_user["specialties"] %}
+            {{ i }}
+        {% endfor %}</p>
+    </div>
+{% endblock %}

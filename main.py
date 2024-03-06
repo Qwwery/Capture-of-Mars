@@ -26,7 +26,7 @@ def training(prof):
     else:
         info = {
             'title': prof,
-            'text': 'Инженерные тренажеры',
+            'text': 'Научные тренажеры',
             'img': f"{url_for('static', filename='img/научный.png')}"
         }
     return render_template('training.html', **info)

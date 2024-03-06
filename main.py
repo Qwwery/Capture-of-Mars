@@ -1,7 +1,8 @@
+import json
+import os
 import random
 
 from flask import Flask, url_for, render_template, request
-import json
 
 app = Flask(__name__)
 
@@ -89,9 +90,11 @@ def table(sex, age):
 
 @app.route('/carousel', methods=['POST', 'GET'])
 def carousel():
-    img = [url_for('static', filename='img/landscapes/Пейзаж 1.png'),
-           url_for('static', filename='img/landscapes/Пейзаж 2.png'),
-           url_for('static', filename='img/landscapes/Пейзаж 3.png')]
+    files = os.listdir('static/img/landscapes')
+    img = []
+    for i in files:
+        i = i.split('\\')[-1]
+        img.append(url_for('static', filename=f'img/landscapes/{i}'))
     if request.method == 'GET':
         info = {
             'img': img
@@ -99,11 +102,11 @@ def carousel():
 
         return render_template('carousel.html', **info)
     elif request.method == 'POST':
-        new_file = f'Пейзаж {len(img)}.png'
+        new_file = f'Пейзаж {len(img) + 1}.png'
         f = request.files['new_photo']
         with open(f'static/img/landscapes/{new_file}', 'wb') as file:
             file.write(f.read())
-        img.append(url_for('static', filename=f'img/landscapes/Пейзаж {len(img) - 1}.png'))
+        img.append(url_for('static', filename=f'img/landscapes/Пейзаж {len(img) + 1}.png'))
 
         info = {
             'img': img
@@ -140,7 +143,6 @@ def member():
     }
 
     return render_template('member.html', **info)
-
 
 
 if __name__ == '__main__':

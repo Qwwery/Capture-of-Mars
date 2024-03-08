@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div align="center">
+        <hr>
+        <h1 align="center">Works log</h1>
+        {% for job in jobs %}
+            <h2 align="left" style="left-border: 20px">Action # {{ job.id }}</h2>
+            <table class="table table-dark table-striped">
+                <tr><th>Title of activity</th><th>Team leader</th><th>Duration</th><th>List of collaborations</th><th>is finished</th></tr> <!--ряд с ячейками заголовков-->
+                <tr><th>{{ job.title }}</th><th>{{ job.team_leader }}</th><th>{{ job.work_size }}</th><th>{{ job.collaborators }}</th><th>{{ job.is_finished }}</th></tr> <!--ряд с ячейками тела таблицы-->
+            </table>
+
+        {% endfor %}
+        <hr>
+    </div>
+{% endblock %}

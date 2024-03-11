@@ -4,6 +4,7 @@ import sqlalchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from .db_session import SqlAlchemyBase
+from sqlalchemy import orm
 
 
 class User(SqlAlchemyBase):
@@ -21,6 +22,7 @@ class User(SqlAlchemyBase):
     hashed_password = sqlalchemy.Column(sqlalchemy.String)
     modified_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now())
 
+    department = orm.relationship('Department')
     def __repr__(self):
         return f"<Colonist> {self.id} {self.surname} {self.name}"
 

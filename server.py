@@ -219,6 +219,15 @@ def register():
         user.set_password(form.password.data)
         db_sess.add(user)
         db_sess.commit()
+        print(form.name.data)
+        print(form.surname.data)
+        print(form.password.data)
+        print(form.email.data)
+        print(form.age.data)
+        print(form.position.data)
+        print(form.speciality.data)
+        print(form.address.data)
+
         return redirect('/')
     return render_template('register.html', title='Регистрация', form=form)
 

@@ -220,8 +220,7 @@ def register():
         db_sess.add(user)
         db_sess.commit()
         return redirect('/')
-    print(form.errors)
-    return render_template('register.html', title='Регистрация', form=form, message='Поля заполнены некорректно')
+    return render_template('register.html', title='Регистрация', form=form)
 
 
 if __name__ == '__main__':
